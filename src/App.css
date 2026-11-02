@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #090a0c;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.navbar {
+  height: 90px;
+  padding: 0 9%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #090a0c;
+  border-bottom: 1px solid #252525;
+}
+
+.logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: #d71920;
+}
+
+.nav-links {
+  display: flex;
+  gap: 38px;
+}
+
+.nav-links a {
+  color: #aaa;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
+
+.discord,
+.primary {
+  background: #c71920;
+  padding: 15px 24px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: 0.2s;
+}
+
+.discord:hover,
+.primary:hover {
+  background: #ed252d;
+  transform: translateY(-2px);
+}
+
+.hero {
+  min-height: 650px;
+  padding: 100px 9%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(90deg, #090a0c 5%, rgba(9,10,12,.94) 35%, rgba(9,10,12,.35) 100%),
+    linear-gradient(0deg, #090a0c 0%, transparent 45%),
+    url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2000') center/cover;
+}
+
+.hero-content {
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  color: #d71920;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(75px, 11vw, 145px);
+  line-height: .82;
+  font-weight: 900;
+  letter-spacing: -3px;
+}
+
+.hero h1 span {
+  color: #d71920;
+}
+
+.description {
+  margin-top: 30px;
+  color: #aaa;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+}
+
+.secondary {
+  padding: 15px 24px;
+  border: 1px solid #555;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: .2s;
+}
+
+.secondary:hover {
+  border-color: #fff;
+}
+
+.hero-label {
+  position: absolute;
+  right: 9%;
+  bottom: 40px;
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.section {
+  padding: 100px 9%;
+  background: #0d0e11;
+}
+
+.section h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 55px;
+  font-weight: 900;
+  margin-bottom: 35px;
+}
+
+.server-card {
+  max-width: 850px;
+  padding: 35px;
+  border: 1px solid #292a2d;
+  background: linear-gradient(110deg, #151619, #101114);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: .2s;
+}
+
+.server-card:hover {
+  border-color: #c71920;
+  transform: translateY(-3px);
+}
+
+.status {
+  color: #d71920;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.server-card h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 32px;
+  margin: 15px 0 8px;
+}
+
+.server-card p {
+  color: #888;
+  font-size: 13px;
+}
+
+.server-number {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 60px;
+  color: #333;
+  font-weight: 900;
+}
+
+footer {
+  padding: 30px 9%;
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 2px;
+  border-top: 1px solid #222;
+}
+
+@media (max-width: 750px) {
+  .navbar {
+    padding: 0 5%;
+    height: 75px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero {
+    padding: 90px 6%;
+    min-height: 570px;
+  }
+
+  .section {
+    padding: 70px 6%;
+  }
+
+  .hero-label {
+    right: 6%;
+  }
+}.ranking-table {
+  width: 100%;
+  border: 1px solid #333;
+  background: #111;
+}
+
+.ranking-row {
+  display: grid;
+  grid-template-columns: 0.7fr 2fr 1fr 1.2fr 0.8fr;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  border-bottom: 1px solid #292929;
+  color: #ddd;
+  font-size: 14px;
+}
+
+.ranking-header {
+  background: #1b1b1b;
+  color: #999;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.ranking-row strong {
+  color: white;
+}
+
+.rank-gold {
+  color: #e5bd58;
+  font-weight: 800;
+}
+
+.rank-silver {
+  color: #c4cbd3;
+  font-weight: 800;
+}
+
+.rank-bronze {
+  color: #c58b5c;
+  font-weight: 800;
+}
+
+.ranking-note {
+  color: #777;
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+@media (max-width: 600px) {
+  .ranking-row {
+    grid-template-columns: 0.5fr 1.5fr 0.7fr;
+    font-size: 12px;
+    padding: 14px 10px;
+  }
+
+  .ranking-row span:nth-child(4),
+  .ranking-row span:nth-child(5) {
+    display: none;
+  }
+
+  .ranking-header span:nth-child(4),
+  .ranking-header span:nth-child(5) {
+    display: none;
+  }
+}.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.shop-card {
+  position: relative;
+  min-height: 260px;
+  padding: 30px;
+  background: linear-gradient(145deg, #1c1c1c, #101010);
+  border: 1px solid #333;
+  border-top: 3px solid #c51d27;
+  transition: 0.25s ease;
+}
+
+.shop-card:hover {
+  transform: translateY(-6px);
+  border-color: #c51d27;
+}
+
+.shop-label {
+  color: #c51d27;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.shop-card h3 {
+  margin: 25px 0 15px;
+  color: white;
+  font-size: 27px;
+}
+
+.shop-card p {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.shop-price {
+  display: inline-block;
+  margin-top: 20px;
+  color: #eee;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 800px) {
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+}.discord-section {
+  text-align: center;
+  padding-top: 90px;
+  padding-bottom: 100px;
+  background: linear-gradient(180deg, #111, #1a1011);
+  border-top: 1px solid #292929;
+}
+
+.discord-section h2 {
+  margin-bottom: 20px;
+}
+
+.discord-section .section-description {
+  margin: 0 auto 35px;
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.discord-section .primary {
+  display: inline-block;
+  text-decoration: none;
+  padding: 16px 30px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: 0.25s ease;
+}
+
+.discord-section .primary:hover {
+  background: #e12630;
+  transform: translateY(-3px);
+}
