@@ -247,7 +247,7 @@ function App() {
           <p className="eyebrow">TWOJA ROZGRYWKA, TWOJE MOŻLIWOŚCI</p>
           <h2>SKLEP REWIR</h2>
           <p className="section-description">
-            Wybierz dodatki i rozwijaj swoją postać. Sklep nie prowadzi jeszcze sprzedaży.
+            Planowany cennik dodatków do serwerów REWIR. Sprzedaż nie jest jeszcze aktywna.
           </p>
 
           <div className="shop-grid">
@@ -255,30 +255,59 @@ function App() {
               <span className="shop-label">PRZYWILEJE</span>
               <h3>VIP</h3>
               <p>Strzykawka lecząca +50 HP oraz podwójny skok.</p>
-              <span className="shop-price">CENA WKRÓTCE</span>
+              <div className="shop-prices">
+                {[
+                  ['7 DNI', '5 zł'],
+                  ['30 DNI', '20 zł'],
+                  ['NA ZAWSZE', '50 zł'],
+                ].map(([term, price]) => (
+                  <div className="shop-price-row" key={term}><span>{term}</span><strong>{price}</strong></div>
+                ))}
+              </div>
             </div>
 
             <div className="shop-card">
               <span className="shop-label">PREMIUM</span>
               <h3>SVIP</h3>
-              <p>Korzyści VIP, spadochron oraz podwójne kredyty.</p>
-              <span className="shop-price">CENA WKRÓTCE</span>
+              <p>
+                Zawiera korzyści VIP: strzykawkę +50 HP i podwójny skok. Dodatkowo
+                spadochron, podwójne kredyty oraz ekskluzywny model postaci dostępny podczas aktywnego SVIP.
+              </p>
+              <div className="shop-prices">
+                {[
+                  ['7 DNI', '10 zł'],
+                  ['30 DNI', '30 zł'],
+                  ['NA ZAWSZE', '100 zł'],
+                ].map(([term, price]) => (
+                  <div className="shop-price-row" key={term}><span>{term}</span><strong>{price}</strong></div>
+                ))}
+              </div>
             </div>
 
             <div className="shop-card">
               <span className="shop-label">WALUTA GRY</span>
               <h3>KREDYTY</h3>
-              <p>Waluta wykorzystywana do zakupów wewnątrz serwerów REWIR.</p>
-              <span className="shop-price">OFERTA WKRÓTCE</span>
+              <p>
+                Kupuj punkty ulepszeń i wybrane modele postaci. Każdy nowy poziom daje 1 punkt,
+                a 100 kredytów pozwala dokupić 1 punkt. Kredyty nie wygasają.
+              </p>
+              <div className="shop-prices">
+                {[
+                  ['1 000 KREDYTÓW', '20 zł'],
+                  ['2 000 KREDYTÓW', '30 zł'],
+                  ['5 000 KREDYTÓW', '60 zł'],
+                ].map(([amount, price]) => (
+                  <div className="shop-price-row" key={amount}><span>{amount}</span><strong>{price}</strong></div>
+                ))}
+              </div>
             </div>
           </div>
 
           <div className="info-panel">
             <h3>INFORMACJE O ZAKUPACH</h3>
             <p>
-              Sprzedaż nie została jeszcze uruchomiona. Ceny, dostępne
-              okresy VIP i SVIP oraz pakiety kredytów zostaną opublikowane
-              przed rozpoczęciem sprzedaży.
+              Sprzedaż nie została jeszcze uruchomiona. Powyższy cennik jest planowany
+              i może zostać doprecyzowany przed startem sklepu.
             </p>
             <p>
               Planowany operator płatności: PayU, z możliwością płatności BLIK.
@@ -286,7 +315,18 @@ function App() {
             </p>
             <p>
               VIP i SVIP będą oferowane jako zakupy jednorazowe na wybrany
-              okres. Bez automatycznego odnawiania.
+              okres i przypisywane do podanego SteamID, a następnie nadawane
+              bezpośrednio na serwerze CS2. Bez automatycznego odnawiania.
+            </p>
+            <p>
+              Planowane pakiety VIP i SVIP „NA ZAWSZE” mają działać bezterminowo, dopóki
+              serwer REWIR będzie dostępny. Warunki na wypadek zakończenia działania serwera
+              lub projektu zostaną jasno określone przed sprzedażą. Kredyty mają nie wygasać,
+              a model SVIP będzie dostępny tylko podczas aktywnego SVIP.
+            </p>
+            <p>
+              Modele postaci będą dostępne wyłącznie za kredyty. Ich ceny nie są jeszcze
+              ustalone i zostaną podane przed uruchomieniem sprzedaży.
             </p>
           </div>
         </section>
@@ -381,6 +421,45 @@ function App() {
             do banku ani pełnego numeru karty płatniczej.
           </p>
         </div>
+
+        <div id="faq" className="faq-block">
+          <p className="eyebrow">NAJCZĘSTSZE PYTANIA</p>
+          <h2>FAQ</h2>
+          <div className="faq-list">
+            <details className="faq-item">
+              <summary>Czy można już kupić VIP, SVIP lub kredyty?</summary>
+              <p>Nie. Sklep i płatności nie są jeszcze aktywne. Podane ceny i oferta są planowane.</p>
+            </details>
+            <details className="faq-item">
+              <summary>Czy VIP lub SVIP odnowi się automatycznie?</summary>
+              <p>Nie. Pakiet trzeba odnowić samodzielnie, kupując go ponownie. Automatyczne odnawianie i cykliczne pobieranie płatności nie będą włączone.</p>
+            </details>
+            <details className="faq-item">
+              <summary>Co jeśli kupię ten sam pakiet, gdy jest jeszcze aktywny?</summary>
+              <p>Plan zakłada, że nowy okres tego samego pakietu zostanie dodany do pozostałego czasu.</p>
+            </details>
+            <details className="faq-item">
+              <summary>Jak będą przypisane zakupy do gracza?</summary>
+              <p>Planowane zakupy będą przypisywane do podanego SteamID i nadawane na serwerze CS2. Nie podawaj hasła do Steam ani kodu Steam Guard.</p>
+            </details>
+            <details className="faq-item">
+              <summary>Kiedy otrzymam zakupiony produkt?</summary>
+              <p>Docelowo po potwierdzeniu płatności produkt ma być nadawany automatycznie. Dokładny czas realizacji i sposób pomocy przy opóźnieniu zostaną podane przed uruchomieniem sklepu.</p>
+            </details>
+            <details className="faq-item">
+              <summary>Czy kredyty wygasają i na co można je wydać?</summary>
+              <p>Plan zakłada, że kredyty nie wygasają. Będzie można wymieniać je na punkty ulepszeń oraz modele postaci. Ceny modeli nie są jeszcze ustalone.</p>
+            </details>
+            <details className="faq-item">
+              <summary>Jak działa model postaci dostępny dla SVIP?</summary>
+              <p>Planowany ekskluzywny model SVIP będzie dostępny tylko wtedy, gdy SVIP jest aktywny.</p>
+            </details>
+            <details className="faq-item">
+              <summary>Co oznacza pakiet VIP lub SVIP „NA ZAWSZE”?</summary>
+              <p>Oferta jest planowana jako bezterminowa podczas działania serwera REWIR. Zasady na wypadek zamknięcia serwera lub projektu zostaną określone przed sprzedażą.</p>
+            </details>
+          </div>
+        </div>
       </section>
 
       <section id="dokumenty" className="section documents-section">
@@ -437,10 +516,16 @@ function App() {
         <article id="prywatnosc" className="document-panel">
           <h3>POLITYKA PRYWATNOŚCI</h3>
           <p>
-            Szczegółowa polityka prywatności zostanie opublikowana przed
-            uruchomieniem kont użytkowników i sprzedaży. Będzie opisywać
-            administratora danych, cele i podstawy przetwarzania, odbiorców,
-            okresy przechowywania danych oraz prawa użytkowników.
+            Obecnie karta Owner pobiera publiczne dane profilu OFFNEST przez Lanyard API,
+            a avatar z Discord CDN. Strona pobiera także fonty z Google Fonts. Gdy te
+            elementy są ładowane, przeglądarka odwiedzającego łączy się z tymi usługami
+            i przekazuje im standardowe dane połączenia, w tym adres IP.
+          </p>
+          <p>
+            To jest informacja wstępna, a nie kompletna polityka prywatności. Przed
+            uruchomieniem kont lub sprzedaży trzeba opisać administratora danych, cele
+            i podstawy przetwarzania, odbiorców, okresy przechowywania, prawa użytkowników
+            oraz ewentualne przekazywanie danych poza EOG.
           </p>
         </article>
 
@@ -460,6 +545,10 @@ function App() {
         <div className="footer-main">
           <span className="footer-brand">REWIR</span>
           <p>POLSKA SIEĆ SERWERÓW COUNTER-STRIKE 2</p>
+          <p className="legal-attribution">
+            Counter-Strike 2 i Counter-Strike są znakami towarowymi Valve Corporation.
+            REWIR jest niezależnym projektem i nie jest powiązany z Valve ani przez Valve wspierany.
+          </p>
           <a href="mailto:rewircs2kontakt@gmail.com">rewircs2kontakt@gmail.com</a>
         </div>
 

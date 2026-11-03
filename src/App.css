@@ -529,6 +529,35 @@ a {
   letter-spacing: .5px;
 }
 
+.shop-prices {
+  display: grid;
+  margin-top: 14px;
+  border-top: 1px solid #3b3e45;
+}
+
+.shop-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+}
+
+.shop-price-row span {
+  color: #c1c5cb;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .7px;
+}
+
+.shop-price-row strong {
+  flex: 0 0 auto;
+  color: var(--red-light);
+  font-size: 12px;
+  font-weight: 900;
+}
+
 .discord-section {
   text-align: center;
   padding: 65px 20px;
@@ -986,4 +1015,44 @@ a.owner-link:hover { border-color: var(--red-light); background: #2a2226; }
 a:focus-visible {
   outline: 2px solid #ff707a;
   outline-offset: 4px;
+}
+
+.footer-main .legal-attribution {
+  max-width: 620px;
+  color: #a8abb2;
+  font-size: 9px;
+  line-height: 1.7;
+  letter-spacing: .2px;
+}
+
+.faq-block {
+  margin-top: 72px;
+}
+
+.faq-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.faq-item {
+  padding: 18px 20px;
+  border: 1px solid #3a3e46;
+  background: linear-gradient(145deg, #22252b, #15171c);
+}
+
+.faq-item summary {
+  color: #f0f1f3;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.faq-item summary::marker { color: #f06b75; }
+.faq-item p { margin: 12px 0 0; color: #c4c8ce; line-height: 1.7; }
+
+@media (max-width: 700px) {
+  .faq-list { grid-template-columns: 1fr; }
+  .faq-block { margin-top: 52px; }
 }
