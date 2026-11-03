@@ -12,8 +12,8 @@ Wersja robocza do pierwszej edycji Mirage RPG. Wartości można dostroić po tes
 | Rozbrojenie bomby | +30 | Rozbrojenie zakończone powodzeniem; nagrodę dostaje rozbrajający. |
 | Wygrana runda | +10 | Każdy gracz drużyny, który uczestniczył w rundzie. |
 | MVP rundy | +10 | Gracz wskazany jako MVP przez serwer; raz za rundę. |
-| Śmierć | −3 | Jedna kara za śmierć, niezależnie od źródła. |
-| Samobójstwo | −10 łącznie | Zastępuje zwykłą karę za śmierć; nie sumuje się z −3 XP. |
+| Śmierć | −5 | Jedna kara za śmierć, niezależnie od źródła. |
+| Samobójstwo | −10 łącznie | Zastępuje zwykłą karę za śmierć; nie sumuje się z −5 XP. |
 
 Friendly fire jest wyłączony, więc gracze nie zadają obrażeń członkom własnej drużyny i nie ma nagrody ani kary XP za teamkill. Nagrody za akcje w jednej rundzie sumują się. XP nie jest przyznawane za obrażenia, samą obecność na serwerze ani eliminacje botów. Kary zmniejszają wyłącznie postęp w aktualnym poziomie: XP nie spada poniżej progu tego poziomu, a gracz nigdy nie traci już zdobytego levela.
 
@@ -65,7 +65,7 @@ Wartość zdrowia wyliczać równomiernie między 100 a 250 HP (np. `100 + zaokr
 ### Uwaga techniczna przed implementacją
 
 Dokumentacja CounterStrikeSharp pokazuje pola związane z maksymalną prędkością ruchu, skalą grawitacji, cyklem strzału i stanem/prędkością animacji broni ([ruch](https://docs.cssharp.dev/api/CounterStrikeSharp.API.Core.CPlayer_MovementServices.html), [grawitacja](https://docs.cssharp.dev/api/CounterStrikeSharp.API.Core.CBaseEntity.html), [cykl strzału](https://docs.cssharp.dev/api/CounterStrikeSharp.API.Core.CCSWeaponBaseVData.html), [stan broni i animacji](https://docs.cssharp.dev/api/CounterStrikeSharp.API.Core.CCSWeaponBase.html)). Sama obecność tych pól w API nie potwierdza, że modyfikacja będzie bezpieczna i per-player. Szczególnie przeładowanie musi zostać zmierzone w grze — przyspieszenie animacji nie może być uznane za krótszy czas przeładowania, jeśli broń nadal nie może strzelać. Przed produkcyjnym wdrożeniem zrobić prototyp każdej statystyki na prywatnym serwerze i sprawdzić efekt dla obu drużyn oraz po śmierci, respawnie, zmianie broni i rundy.
-- Przy zwykłej grze zakładamy orientacyjnie około 200–300 XP na 20-minutową sesję. Osiągnięcie 100 poziomu powinno zająć około 80–120 godzin aktywnej gry bez kupowania XP. Rzeczywisty czas zależy od wyników, trybu i długości sesji.
+- Przy zwykłej grze zakładamy orientacyjnie około 180–280 XP na 20-minutową sesję. Osiągnięcie 100 poziomu powinno zająć około 85–130 godzin aktywnej gry bez kupowania XP. Rzeczywisty czas zależy od wyników, trybu i długości sesji.
 
 ## Zasady naliczania
 

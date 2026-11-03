@@ -247,6 +247,9 @@ function App() {
               </div>
               <strong>MAX LEVEL <b>100</b></strong>
             </div>
+            <div className="xp-system-grid">
+            <div className="xp-rewards-column">
+            <h4 className="xp-column-title">PUNKTACJA ZA RUNDĘ</h4>
             <div className="xp-rewards">
               <div><span>ZABICIE</span><strong>+20 XP</strong></div>
               <div><span>ASYSTA</span><strong>+5 XP</strong></div>
@@ -254,12 +257,14 @@ function App() {
               <div><span>ROZBROJENIE</span><strong>+30 XP</strong></div>
               <div><span>WYGRANA RUNDA</span><strong>+10 XP</strong></div>
               <div><span>MVP RUNDY</span><strong>+10 XP</strong></div>
-              <div className="xp-penalty"><span>ŚMIERĆ</span><strong>−3 XP</strong></div>
+              <div className="xp-penalty"><span>ŚMIERĆ</span><strong>−5 XP</strong></div>
             </div>
             <p>
               Koszt poziomu rośnie stopniowo: od 100 XP na początku do 1 464 XP przy awansie na level 100.
               Śmierć nie odbiera zdobytego poziomu, a friendly fire jest wyłączony. Planowany przelicznik: 100 kredytów = 1 XP.
             </p>
+            </div>
+            <div className="xp-skills-column">
             <div className="skill-panel-heading">
               <span>ROZWIJAJ POSTAĆ PUNKTAMI ULEPSZEŃ</span>
               <b>WSZYSTKIE SKILLE MAX NA 100 LVL</b>
@@ -273,6 +278,8 @@ function App() {
               <div><span>ZDROWIE <i>MAX 17</i></span><strong>+8–9 HP / PUNKT <b>MAX 250 HP</b></strong></div>
             </div>
             <p className="skill-panel-note">99 punktów zdobywanych za awanse wystarczy, by wymaksować wszystkie sześć statystyk. Wartości są planem do testów balansu przed startem.</p>
+            </div>
+            </div>
           </div>
         </section>
 
