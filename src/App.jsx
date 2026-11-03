@@ -1,5 +1,98 @@
 
+import { useEffect, useState } from 'react'
 import './App.css'
+
+// Uzupełnij ID użytkownika Discord, aby włączyć odczyt obecności przez Lanyard.
+const ownerDiscordUserId = '518435705282887721'
+const ownerDiscordUrl = `https://discord.com/users/${ownerDiscordUserId}`
+
+function OwnerProfile() {
+  const [profile, setProfile] = useState(null)
+
+  useEffect(() => {
+    if (!ownerDiscordUserId) return undefined
+
+    let active = true
+    let controller
+    const readPresence = async () => {
+      controller?.abort()
+      const requestController = new AbortController()
+      controller = requestController
+      try {
+        const response = await fetch(`https://api.lanyard.rest/v1/users/${ownerDiscordUserId}`, {
+          signal: requestController.signal,
+        })
+        if (!response.ok) throw new Error('Presence request failed')
+        const result = await response.json()
+        if (!result?.success || !result?.data?.discord_user) throw new Error('Profile unavailable')
+        if (active) setProfile(result.data)
+      } catch {
+        if (active && !requestController.signal.aborted) {
+          setProfile((current) => current
+            ? { ...current, discord_status: 'unavailable' }
+            : { discord_user: { username: 'offnest' }, discord_status: 'unavailable', activities: [] })
+        }
+      }
+    }
+
+    readPresence()
+    const interval = window.setInterval(readPresence, 60_000)
+    return () => {
+      active = false
+      controller?.abort()
+      window.clearInterval(interval)
+    }
+  }, [])
+
+  const status = ['online', 'idle', 'dnd', 'offline'].includes(profile?.discord_status)
+    ? profile.discord_status
+    : 'unavailable'
+  const labels = {
+    online: 'ONLINE',
+    idle: 'ZARAZ WRACAM',
+    dnd: 'NIE PRZESZKADZAĆ',
+    offline: 'OFFLINE',
+    unavailable: 'STATUS NIEDOSTĘPNY',
+  }
+
+  const user = profile?.discord_user
+  const avatarHash = user?.avatar
+  const avatarUrl = avatarHash
+    ? `https://cdn.discordapp.com/avatars/${ownerDiscordUserId}/${avatarHash}.${avatarHash.startsWith('a_') ? 'gif' : 'png'}?size=256`
+    : null
+  const activities = profile?.activities || []
+  const customStatus = activities.find((activity) => activity.type === 4 && activity.state)
+  const currentActivity = activities.find((activity) => activity.type === 0 || activity.type === 2)
+  const activityText = currentActivity?.type === 2 && profile?.spotify
+    ? `Słucha: ${profile.spotify.song} — ${profile.spotify.artist}`
+    : currentActivity
+      ? [currentActivity.name, currentActivity.details].filter(Boolean).join(' · ')
+      : null
+
+  return (
+    <>
+      <div className="owner-card">
+        <div className="owner-avatar-wrap">
+          <div className="owner-avatar-fallback" aria-hidden="true">O</div>
+          {avatarUrl && <img className="owner-avatar" src={avatarUrl} alt="Avatar Discord OFFNEST" />}
+          <span className={`owner-avatar-status presence-${status}`} aria-label={labels[status]} />
+        </div>
+        <div className="owner-details">
+          <span className="owner-label">PROFIL DISCORD</span>
+          <strong>{user?.global_name || user?.display_name || user?.username || 'OFFNEST'}</strong>
+          <span className="owner-username">@{user?.username || 'offnest'}</span>
+          <span className={`owner-presence presence-${status}`} aria-live="polite"><i /> {labels[status]}</span>
+          {customStatus && <span className="owner-custom-status">{customStatus.emoji?.name ? `${customStatus.emoji.name} ` : ''}{customStatus.state}</span>}
+          {activityText && <span className="owner-activity">{activityText}</span>}
+        </div>
+        <a className="owner-link" href={ownerDiscordUrl} target="_blank" rel="noopener noreferrer">
+          OTWÓRZ PROFIL <span>↗</span>
+        </a>
+      </div>
+      {!profile && <p className="owner-profile-note">Ładowanie danych profilu Discord…</p>}
+    </>
+  )
+}
 
 function App() {
   return (
@@ -13,6 +106,8 @@ function App() {
           <a href="#ranking">RANKING</a>
           <a href="#sklep">SKLEP</a>
           <a href="#pomoc">POMOC</a>
+          <a href="#owner">OWNER</a>
+          <a href="#czat">CZAT</a>
         </div>
 
         <a className="discord" href="https://discord.gg/7qH4gbWED" target="_blank" rel="noopener noreferrer">
@@ -28,9 +123,9 @@ function App() {
             POLSKA SIEĆ SERWERÓW CS2
           </div>
 
-          <h1 className="hero-title">
+                  <h1 className="hero-title">
             WEJDŹ DO
-            <span>REWIRU<span className="title-period">.</span></span>
+            <span>REWIRU</span>
           </h1>
 
           <p className="description">
@@ -43,7 +138,7 @@ function App() {
             <a href="#serwery" className="primary">
               POZNAJ NASZE SERWERY <span>→</span>
             </a>
-            <a href="#discord" className="secondary">
+            <a href="#czat" className="secondary">
               DOŁĄCZ DO SPOŁECZNOŚCI
             </a>
           </div>
@@ -62,18 +157,38 @@ function App() {
       </main>
 
       <main className="content-grid">
-        <section id="serwery" className="section">
-          <p className="eyebrow">GRAJ NA SWOICH ZASADACH</p>
-          <h2>NASZE SERWERY</h2>
-
-          <div className="server-card">
+        <section id="serwery" className="section servers-section">
+          <div className="servers-heading">
             <div>
-              <span className="status"><i /> WKRÓTCE</span>
-              <h3>SURF RPG COMBAT</h3>
-              <p>Surfuj, walcz i rozwijaj swoją postać.</p>
+              <p className="eyebrow">GRAJ NA SWOICH ZASADACH</p>
+              <h2>NASZE SERWERY</h2>
             </div>
-            <span className="server-number">01</span>
+            <span className="network-status"><i /> SIEĆ REWIR</span>
           </div>
+
+          <article className="server-card server-featured">
+            <div className="server-card-topline">
+              <span className="server-index">SERWER 01 <b>/</b> CS2</span>
+              <span className="status"><i /> WKRÓTCE</span>
+            </div>
+            <div className="server-main">
+              <div>
+                <h3>SURF RPG <span>COMBAT</span></h3>
+                <p>Przemierzaj trasy, walcz o przewagę i rozwijaj postać w swoim tempie.</p>
+              </div>
+              <span className="server-number">01</span>
+            </div>
+            <div className="server-details">
+              <div><span>TRYB</span><strong>SURF • RPG • COMBAT</strong></div>
+              <div><span>MAPY</span><strong>ROTACJA WKRÓTCE</strong></div>
+              <div><span>ADRES SERWERA</span><strong>OGŁOSIMY PRZED STARTEM</strong></div>
+            </div>
+            <div className="server-card-footer">
+              <span><i /> SERWER NIE JEST JESZCZE URUCHOMIONY</span>
+              <a href="https://discord.gg/7qH4gbWED" target="_blank" rel="noopener noreferrer">POWIADOMIENIA NA DISCORD <b>↗</b></a>
+            </div>
+          </article>
+          <p className="servers-note">Adresy IP, mapy i status online pojawią się po uruchomieniu serwerów.</p>
         </section>
 
         <section id="tryby" className="section">
@@ -81,25 +196,35 @@ function App() {
           <h2>TRYBY ROZGRYWKI</h2>
 
           <div className="modes-grid">
-            <div className="mode-card">
-              <span className="mode-number">01 / SERWER CS2</span>
-              <h3>SURF RPG COMBAT</h3>
-              <p>
-                Pokonuj kolejne trasy, zdobywaj broń i walcz z innymi
-                graczami. Rozwijaj umiejętności i zdobywaj poziomy.
-              </p>
-              <span className="mode-status">WKRÓTCE</span>
-            </div>
-
-            <div className="mode-card">
-              <span className="mode-number">02 / PROGRESJA</span>
-              <h3>SYSTEM RPG</h3>
-              <p>
-                Zdobywaj doświadczenie i punkty umiejętności.
-                Ulepszaj zdrowie, szybkość i przeładowanie.
-              </p>
-              <span className="mode-status">ELEMENT SURF RPG COMBAT</span>
-            </div>
+            {[
+              {
+                number: '01',
+                title: 'SURF RPG COMBAT',
+                description: 'Surfuj, walcz i rozwijaj postać — zdobywaj doświadczenie oraz ulepszaj umiejętności.',
+              },
+              {
+                number: '02',
+                title: 'ONLY AWP • BUNNYHOP • NO RECOIL',
+                description: 'Celne strzały z AWP, dynamiczny bunnyhop i rozgrywka bez odrzutu.',
+              },
+              {
+                number: '03',
+                title: 'ONLY MIRAGE',
+                description: 'Rywalizacja na jednej z najbardziej znanych map Counter-Strike.',
+              },
+              {
+                number: '04',
+                title: 'JAILBREAK',
+                description: 'Tryb więzienny, w którym każda runda przynosi nowe wybory.',
+              },
+            ].map((mode) => (
+              <article className={`mode-card${mode.number === '02' ? ' mode-card-long' : ''}`} key={mode.number}>
+                <span className="mode-number">{mode.number} / PLANOWANY SERWER</span>
+                <h3>{mode.title}</h3>
+                <p>{mode.description}</p>
+                <span className="mode-status">DOSTĘPNY WKRÓTCE</span>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -107,36 +232,15 @@ function App() {
           <p className="eyebrow">WALCZ O SWOJĄ POZYCJĘ</p>
           <h2>RANKING GRACZY</h2>
 
-          <div className="ranking-table">
-            <div className="ranking-row ranking-header">
-              <span>MIEJSCE</span>
-              <span>GRACZ</span>
-              <span>POZIOM</span>
-              <span>ZABÓJSTWA</span>
-              <span>K/D</span>
+          <div className="ranking-preview">
+            <div className="ranking-preview-mark" aria-hidden="true">#</div>
+            <div className="ranking-preview-copy">
+              <span className="ranking-preview-status"><i /> RANKING WKRÓTCE</span>
+              <h3>ZGARNIJ SWOJE MIEJSCE</h3>
+              <p>Wyniki i statystyki pojawią się po starcie serwera REWIR.</p>
             </div>
-
-            {[
-              ['01', 'Gracz_One', '100', '2450', '2.45'],
-              ['02', 'SurfMaster', '87', '1980', '2.12'],
-              ['03', 'RewirPlayer', '74', '1640', '1.89'],
-              ['04', 'Shadow', '62', '1210', '1.67']
-            ].map((player, index) => (
-              <div className="ranking-row" key={player[0]}>
-                <span className={index === 0 ? 'rank-gold' : index === 1 ? 'rank-silver' : index === 2 ? 'rank-bronze' : ''}>
-                  {player[0]}
-                </span>
-                <strong>{player[1]}</strong>
-                <span>{player[2]}</span>
-                <span>{player[3]}</span>
-                <span>{player[4]}</span>
-              </div>
-            ))}
+            <a className="ranking-preview-link" href="#czat">ŚLEDŹ AKTUALNOŚCI <span>↗</span></a>
           </div>
-
-          <p className="ranking-note">
-            Przykładowe dane — ranking zostanie podłączony do serwera.
-          </p>
         </section>
 
         <section id="sklep" className="section">
@@ -188,14 +292,25 @@ function App() {
         </section>
       </main>
 
-      <section id="discord" className="discord-section">
-        <p className="eyebrow">DOŁĄCZ DO NASZEJ SPOŁECZNOŚCI</p>
-        <h2>WCHODZISZ DO REWIRU?</h2>
+      <section id="owner" className="owner-section">
+        <div className="owner-copy">
+          <p className="eyebrow">POZNAJ OSOBĘ ZA PROJEKTEM</p>
+          <h2>OWNER <span>REWIRU</span></h2>
+          <p className="section-description">
+            Profil OFFNEST pobierany bezpośrednio z Discorda.
+          </p>
+        </div>
+        <OwnerProfile />
+      </section>
+
+      <section id="czat" className="discord-section chat-section">
+        <p className="eyebrow">ROZMOWY ZE SPOŁECZNOŚCIĄ</p>
+        <h2>CZAT OGÓLNY REWIR</h2>
         <p className="section-description">
-          Poznaj graczy, śledź aktualności i przygotuj się na start naszych serwerów.
+          Dołącz do rozmowy, poznaj graczy i śledź aktualności. Czat społeczności znajdziesz na naszym Discordzie.
         </p>
         <a className="primary" href="https://discord.gg/7qH4gbWED" target="_blank" rel="noopener noreferrer">
-          DOŁĄCZ NA DISCORD <span>→</span>
+          DOŁĄCZ DO CZATU NA DISCORDZIE <span>↗</span>
         </a>
       </section>
 
@@ -349,6 +464,7 @@ function App() {
         </div>
 
         <div className="footer-links">
+          <a href="#owner">OWNER</a>
           <a href="#regulamin">REGULAMIN</a>
           <a href="#reklamacje">REKLAMACJE</a>
           <a href="#zwroty">ZWROTY</a>
