@@ -1251,6 +1251,46 @@ a:focus-visible {
 .faq-item summary::marker { color: #f06b75; }
 .faq-item p { margin: 12px 0 0; color: #c4c8ce; line-height: 1.7; }
 
+/* Use the wide server section for both the launch details and community entry point. */
+#serwery { grid-column: 1 / -1; }
+.server-feature-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(270px, .8fr); gap: 18px; align-items: stretch; }
+.server-feature-main { min-width: 0; }
+.server-community-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid #514047;
+  border-left: 3px solid var(--red-light);
+  background: radial-gradient(ellipse at 90% 10%, rgba(184, 34, 50, .2), transparent 48%), linear-gradient(145deg, #211b1e, #141417 72%);
+}
+.community-card-mark { position: absolute; z-index: -1; top: -22px; right: 14px; color: rgba(255,255,255,.045); font: 900 145px/.95 'Barlow Condensed', sans-serif; }
+.community-card-mark span { color: rgba(240,82,96,.3); }
+.server-community-card .eyebrow { margin: 0 0 12px; font-size: 9px; }
+.server-community-card h3 { margin: 0 0 14px; color: #f3f3f5; font: 900 clamp(30px, 3.2vw, 44px)/.95 'Barlow Condensed', sans-serif; }
+.server-community-card h3 span { color: #ff6975; }
+.community-card-copy { max-width: 380px; color: #c8c9ce; font-size: 11px; line-height: 1.8; }
+.community-card-points { display: grid; gap: 12px; margin: 23px 0 28px; color: #e0e0e4; font-size: 10px; font-weight: 700; }
+.community-card-points span { display: flex; align-items: center; gap: 10px; }
+.community-card-points i { width: 6px; height: 6px; flex: 0 0 6px; border-radius: 50%; background: #f05260; box-shadow: 0 0 10px rgba(240,82,96,.55); }
+.community-card-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: auto; padding: 13px 15px; color: white; background: linear-gradient(110deg, #951a28, #c52b39); border: 1px solid rgba(255,255,255,.12); font-size: 9px; font-weight: 900; letter-spacing: .9px; transition: .2s; }
+.community-card-link:hover { background: linear-gradient(110deg, #b52130, #ed4654); transform: translateY(-2px); }
+.community-card-link b { font-size: 13px; }
+.community-card-footnote { margin-top: 12px; color: #9899a0; font-size: 7px; font-weight: 800; letter-spacing: 1px; }
+
+@media (max-width: 900px) {
+  .server-feature-grid { grid-template-columns: minmax(0, 1.3fr) minmax(240px, .8fr); }
+}
+
+@media (max-width: 650px) {
+  .server-feature-grid { grid-template-columns: 1fr; }
+  .server-community-card { min-height: 310px; }
+}
+
 /* Clearer progression layout and higher contrast for the first launch edition. */
 #tryby { grid-column: 1 / -1; }
 

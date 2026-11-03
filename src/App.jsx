@@ -166,6 +166,8 @@ function App() {
             <span className="network-status"><i /> SIEĆ REWIR</span>
           </div>
 
+          <div className="server-feature-grid">
+          <div className="server-feature-main">
           <div className="launch-banner">
             <span className="launch-kicker"><i /> PIERWSZA EDYCJA REWIR</span>
             <h3>RPG NA <span>ZIMOWYM MIRAGE</span></h3>
@@ -196,6 +198,23 @@ function App() {
             </div>
           </article>
           <p className="servers-note">Adres IP i dokładny termin startu podamy przed uruchomieniem serwera.</p>
+          </div>
+          <aside className="server-community-card">
+            <div className="community-card-mark" aria-hidden="true">R<span>.</span></div>
+            <p className="eyebrow">REWIR • COMMUNITY</p>
+            <h3>WBIJAJ NA<br /><span>DISCORDA</span></h3>
+            <p className="community-card-copy">Bądź na bieżąco z przygotowaniami do pierwszej edycji. Tutaj pojawią się informacje o starcie i serwerze.</p>
+            <div className="community-card-points">
+              <span><i /> Aktualności o starcie</span>
+              <span><i /> Społeczność REWIR</span>
+              <span><i /> Powiadomienia o serwerze</span>
+            </div>
+            <a href="https://discord.gg/7qH4gbWED" target="_blank" rel="noopener noreferrer" className="community-card-link">
+              DOŁĄCZ DO DISCORDA <b>↗</b>
+            </a>
+            <span className="community-card-footnote">OTWORZY SIĘ W NOWEJ KARCIE</span>
+          </aside>
+          </div>
         </section>
 
         <section id="tryby" className="section">
