@@ -18,8 +18,8 @@ Dokument opisuje docelowy przepływ zakupów. To plan, nie działająca integrac
 - **VIP/SVIP czasowe:** aktywacja po potwierdzeniu płatności; okres w UTC, początek i koniec zapisane jawnie. Pakiety nie odnawiają się automatycznie — gracz kupuje kolejny okres samodzielnie. Robocza decyzja: ponowny zakup tego samego pakietu dodaje okres do pozostałego czasu.
 - **VIP/SVIP bezterminowe:** osobne uprawnienie bez daty wygaśnięcia, z warunkami działania usługi opisanymi przed sprzedażą.
 - **Kredyty:** dopisanie dokładnie raz do salda SteamID. Saldo powinno wynikać z niezmiennego rejestru operacji (zakup, wydanie, korekta), a nie z polecenia z przeglądarki.
-- **Korzyści:** korzyści VIP/SVIP wynikają z aktywnego uprawnienia. Ekskluzywny model SVIP jest dostępny tylko przy aktywnym SVIP zgodnie z obecną decyzją.
-- **Modele za kredyty:** sklep i serwer muszą wspólnie sprawdzić cenę oraz saldo i wykonać obciążenie/zakup atomowo, aby nie można było wydać tych samych kredytów dwa razy.
+- **Korzyści:** korzyści VIP/SVIP wynikają z aktywnego uprawnienia. SVIP obejmuje korzyści VIP, spadochron i podwójne kredyty; nie obejmuje modeli postaci.
+- **Doświadczenie za kredyty:** sklep i serwer muszą wspólnie sprawdzić saldo oraz wykonać wymianę atomowo, aby nie można było wydać tych samych kredytów dwa razy. Roboczy przelicznik: 100 kredytów za 1 punkt doświadczenia.
 
 ## Minimalne statusy zamówienia
 
@@ -42,5 +42,5 @@ Dodatkowe stany: `payment_failed`, `fulfillment_retry`, `refunded`, `disputed`, 
 - Sposób potwierdzenia SteamID kupującego i procedura zmiany błędnie podanego ID.
 - Jak traktować zakup SVIP w trakcie aktywnego VIP (i odwrotnie), oraz regułę aktywacji po zakupie offline.
 - Polityka przy zamknięciu projektu/serwera oraz sposób obsługi niewykorzystanych kredytów i aktywnych pakietów.
-- Ceny modeli postaci za kredyty.
+- Progi poziomów, zasady zdobywania doświadczenia i limity statystyk rozwijanych punktami ulepszeń.
 - Operator, konfiguracja produkcyjna i treść dokumentów przed przyjmowaniem prawdziwych płatności.

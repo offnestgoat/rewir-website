@@ -22,12 +22,11 @@ Lista zbiera ustalenia i rzeczy do domknięcia przed uruchomieniem sklepu oraz s
 
 - Kredyty nie wygasają.
 - Każdy zdobyty poziom daje 1 punkt ulepszenia.
-- 100 kredytów można wymienić na 1 dodatkowy punkt ulepszenia (500 kredytów = 5 punktów).
-- Wybrane modele postaci będzie można kupować za kredyty.
-- Modele postaci będą dostępne wyłącznie za kredyty; ich ceny nie są jeszcze ustalone.
+- 100 kredytów można wymienić na 1 punkt doświadczenia (500 kredytów = 5 punktów doświadczenia); XP pomaga zdobywać poziomy.
+- Kredyty służą do rozwijania postaci przez zdobywanie doświadczenia; modele postaci nie są częścią aktualnej oferty.
 - VIP, SVIP i kredyty mają być przypisywane do SteamID i nadawane bezpośrednio na serwerze CS2.
 - VIP: strzykawka lecząca +50 HP i podwójny skok.
-- SVIP: korzyści VIP, spadochron, podwójne kredyty i ekskluzywny model postaci dostępny tylko podczas aktywnego SVIP.
+- SVIP: korzyści VIP, spadochron i podwójne kredyty.
 - VIP i SVIP trzeba odnawiać samodzielnie przez kolejny zakup; nie będzie automatycznego odnawiania ani cyklicznych płatności.
 
 ## Do przygotowania przed sprzedażą
@@ -40,9 +39,9 @@ Lista zbiera ustalenia i rzeczy do domknięcia przed uruchomieniem sklepu oraz s
 - [ ] Przed zakupem pokazać łączną cenę, zakres i czas działania świadczenia oraz jasny przycisk potwierdzający obowiązek zapłaty.
 - [ ] Określić, jak pakiety „na zawsze” będą działać, dopóki serwer jest dostępny, oraz uczciwie uregulować sytuację zakończenia usługi/projektu.
 - [ ] Potwierdzić, że ponowny zakup tego samego pakietu dodaje czas do pozostałego okresu; ustalić, jak traktować zakup SVIP podczas VIP i odwrotnie.
-- [ ] Ustalić ceny poszczególnych modeli postaci za kredyty.
 - [ ] Zaprojektować bezpieczne przypisywanie VIP/SVIP/kredytów do SteamID i procedurę nadawania ich na serwerze CS2.
-- [ ] Potwierdzić prawa/licencje do wszystkich grafik, fontów i modeli postaci oraz sposób dozwolonego użycia oznaczeń Counter-Strike/Valve.
+- [ ] Potwierdzić prawa/licencje do grafik, fontów i innych używanych zasobów oraz sposób dozwolonego użycia oznaczeń Counter-Strike/Valve.
+- [ ] Nie dodawać modeli postaci do oferty ani benefitów SVIP w obecnej edycji; ewentualny powrót do tematu wymaga wcześniejszego potwierdzenia zgodności z zasadami Valve i ryzyka GSLT.
 - [ ] Potwierdzić PayU/BLIK i przygotować konfigurację płatności bez ujawniania sekretów w kodzie strony.
 - [ ] Uzgodnić cenę końcową i treści sklepu przed włączeniem przycisków zakupu.
 
@@ -57,8 +56,8 @@ Lista zbiera ustalenia i rzeczy do domknięcia przed uruchomieniem sklepu oraz s
 
 - [ ] Wybrać hosting, lokalizację i pojemność serwerów.
 - [ ] Skonfigurować planowane tryby: Surf RPG Combat, Only AWP/Bunnyhop/No Recoil, Only Mirage i Jailbreak.
-- [ ] Przygotować mapy, ustawienia rozgrywki, model SVIP i sposób naliczania kredytów.
-- [ ] Wdrożyć przyznawanie 1 punktu ulepszenia za poziom oraz wymianę 100 kredytów na 1 punkt.
+- [ ] Przygotować mapy, ustawienia rozgrywki i sposób naliczania kredytów.
+- [ ] Wdrożyć przyznawanie 1 punktu ulepszenia za poziom oraz wymianę 100 kredytów na 1 punkt doświadczenia.
 - [ ] Podłączyć status serwerów i ranking do rzeczywistych danych.
 - [ ] Przygotować kopie zapasowe, monitoring i procedurę restartu/awarii.
 - [ ] Przejść cały zakup w trybie testowym, sprawdzić nadanie produktu i obsługę reklamacji.

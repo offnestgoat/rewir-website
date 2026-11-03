@@ -160,27 +160,34 @@ function App() {
         <section id="serwery" className="section servers-section">
           <div className="servers-heading">
             <div>
-              <p className="eyebrow">GRAJ NA SWOICH ZASADACH</p>
+              <p className="eyebrow">PIERWSZY SERWER REWIR</p>
               <h2>NASZE SERWERY</h2>
             </div>
             <span className="network-status"><i /> SIEĆ REWIR</span>
           </div>
 
+          <div className="launch-banner">
+            <span className="launch-kicker"><i /> PIERWSZA EDYCJA REWIR</span>
+            <h3>RPG NA <span>ZIMOWYM MIRAGE</span></h3>
+            <p>Tu zacznie się pierwsza odsłona REWIR. Walcz, zdobywaj doświadczenie i rozwijaj swoją postać.</p>
+            <span className="launch-map">MAPA <b>DE_MIRAGE_CHRISTMAS</b></span>
+          </div>
+
           <article className="server-card server-featured">
             <div className="server-card-topline">
               <span className="server-index">SERWER 01 <b>/</b> CS2</span>
-              <span className="status"><i /> WKRÓTCE</span>
+              <span className="status"><i /> W PRZYGOTOWANIU</span>
             </div>
             <div className="server-main">
               <div>
-                <h3>SURF RPG <span>COMBAT</span></h3>
-                <p>Przemierzaj trasy, walcz o przewagę i rozwijaj postać w swoim tempie.</p>
+                <h3>MIRAGE <span>RPG</span></h3>
+                <p>Znana mapa w zimowej odsłonie. Rozwijaj postać i ulepszaj statystyki, w tym szybkostrzelność.</p>
               </div>
               <span className="server-number">01</span>
             </div>
             <div className="server-details">
-              <div><span>TRYB</span><strong>SURF • RPG • COMBAT</strong></div>
-              <div><span>MAPY</span><strong>ROTACJA WKRÓTCE</strong></div>
+              <div><span>TRYB</span><strong>MIRAGE • RPG • PROGRESJA</strong></div>
+              <div><span>MAPA STARTOWA</span><strong>DE_MIRAGE_CHRISTMAS</strong></div>
               <div><span>ADRES SERWERA</span><strong>OGŁOSIMY PRZED STARTEM</strong></div>
             </div>
             <div className="server-card-footer">
@@ -188,7 +195,7 @@ function App() {
               <a href="https://discord.gg/7qH4gbWED" target="_blank" rel="noopener noreferrer">POWIADOMIENIA NA DISCORD <b>↗</b></a>
             </div>
           </article>
-          <p className="servers-note">Adresy IP, mapy i status online pojawią się po uruchomieniu serwerów.</p>
+          <p className="servers-note">Adres IP i dokładny termin startu podamy przed uruchomieniem serwera.</p>
         </section>
 
         <section id="tryby" className="section">
@@ -199,32 +206,73 @@ function App() {
             {[
               {
                 number: '01',
-                title: 'SURF RPG COMBAT',
-                description: 'Surfuj, walcz i rozwijaj postać — zdobywaj doświadczenie oraz ulepszaj umiejętności.',
+                title: 'MIRAGE RPG',
+                description: 'Pierwsza edycja REWIR. Walcz na zimowym Mirage, zdobywaj doświadczenie i rozwijaj statystyki.',
+                status: 'PIERWSZA EDYCJA • W PRZYGOTOWANIU',
+                featured: true,
               },
               {
                 number: '02',
-                title: 'ONLY AWP • BUNNYHOP • NO RECOIL',
-                description: 'Celne strzały z AWP, dynamiczny bunnyhop i rozgrywka bez odrzutu.',
+                title: 'SURF RPG COMBAT',
+                description: 'Tryb surf z walką i rozwojem postaci — planowany na kolejną odsłonę.',
+                status: 'W PLANACH',
               },
               {
                 number: '03',
-                title: 'ONLY MIRAGE',
-                description: 'Rywalizacja na jednej z najbardziej znanych map Counter-Strike.',
+                title: 'ONLY AWP • BUNNYHOP • NO RECOIL',
+                description: 'Osobny serwer z AWP, bunnyhopem i rozgrywką bez odrzutu.',
+                status: 'W PLANACH',
               },
               {
                 number: '04',
-                title: 'JAILBREAK',
-                description: 'Tryb więzienny, w którym każda runda przynosi nowe wybory.',
+                title: 'ONLY MIRAGE / JAILBREAK',
+                description: 'Kolejne tryby, które rozważymy po uruchomieniu pierwszej edycji.',
+                status: 'W PLANACH',
               },
             ].map((mode) => (
-              <article className={`mode-card${mode.number === '02' ? ' mode-card-long' : ''}`} key={mode.number}>
-                <span className="mode-number">{mode.number} / PLANOWANY SERWER</span>
+              <article className={`mode-card${mode.number === '03' ? ' mode-card-long' : ''}${mode.featured ? ' mode-card-featured' : ''}`} key={mode.number}>
+                <span className="mode-number">{mode.number} / {mode.featured ? 'PIERWSZY SERWER' : 'KOLEJNE EDYCJE'}</span>
                 <h3>{mode.title}</h3>
                 <p>{mode.description}</p>
-                <span className="mode-status">DOSTĘPNY WKRÓTCE</span>
+                <span className="mode-status">{mode.status}</span>
               </article>
             ))}
+          </div>
+
+          <div className="xp-panel" aria-label="Planowana punktacja doświadczenia">
+            <div className="xp-panel-heading">
+              <div>
+                <span>PIERWSZA EDYCJA • MIRAGE RPG</span>
+                <h3>JAK ZDOBYWASZ XP</h3>
+              </div>
+              <strong>MAX LEVEL <b>100</b></strong>
+            </div>
+            <div className="xp-rewards">
+              <div><span>ZABICIE</span><strong>+20 XP</strong></div>
+              <div><span>ASYSTA</span><strong>+5 XP</strong></div>
+              <div><span>PLANT BOMBY</span><strong>+15 XP</strong></div>
+              <div><span>ROZBROJENIE</span><strong>+30 XP</strong></div>
+              <div><span>WYGRANA RUNDA</span><strong>+10 XP</strong></div>
+              <div><span>MVP RUNDY</span><strong>+10 XP</strong></div>
+              <div className="xp-penalty"><span>ŚMIERĆ</span><strong>−3 XP</strong></div>
+            </div>
+            <p>
+              Koszt poziomu rośnie stopniowo: od 100 XP na początku do 1 464 XP przy awansie na level 100.
+              Śmierć nie odbiera zdobytego poziomu, a friendly fire jest wyłączony. Planowany przelicznik: 100 kredytów = 1 XP.
+            </p>
+            <div className="skill-panel-heading">
+              <span>ROZWIJAJ POSTAĆ PUNKTAMI ULEPSZEŃ</span>
+              <b>WSZYSTKIE SKILLE MAX NA 100 LVL</b>
+            </div>
+            <div className="skill-grid">
+              <div><span>SZYBKOSTRZELNOŚĆ <i>MAX 16</i></span><strong>+6,25% / PUNKT <b>MAX 2×</b></strong></div>
+              <div><span>SZYBKOŚĆ POSTACI <i>MAX 16</i></span><strong>+0,5% / PUNKT <b>MAX +8%</b></strong></div>
+              <div><span>SZYBKOŚĆ PRZEŁADOWANIA <i>MAX 17</i></span><strong>+0,03× SZYBKOŚCI / PKT <b>MAX 1,5×</b></strong></div>
+              <div><span>GRAWITACJA <i>MAX 16</i></span><strong>−3,125% / PUNKT <b>MAX 2× SKOK</b></strong></div>
+              <div><span>OBRAŻENIA <i>MAX 17</i></span><strong>+5,88% / PUNKT <b>MAX 2×</b></strong></div>
+              <div><span>ZDROWIE <i>MAX 17</i></span><strong>+8–9 HP / PUNKT <b>MAX 250 HP</b></strong></div>
+            </div>
+            <p className="skill-panel-note">99 punktów zdobywanych za awanse wystarczy, by wymaksować wszystkie sześć statystyk. Wartości są planem do testów balansu przed startem.</p>
           </div>
         </section>
 
@@ -271,7 +319,7 @@ function App() {
               <h3>SVIP</h3>
               <p>
                 Zawiera korzyści VIP: strzykawkę +50 HP i podwójny skok. Dodatkowo
-                spadochron, podwójne kredyty oraz ekskluzywny model postaci dostępny podczas aktywnego SVIP.
+                spadochron i podwójne kredyty.
               </p>
               <div className="shop-prices">
                 {[
@@ -288,8 +336,8 @@ function App() {
               <span className="shop-label">WALUTA GRY</span>
               <h3>KREDYTY</h3>
               <p>
-                Kupuj punkty ulepszeń i wybrane modele postaci. Każdy nowy poziom daje 1 punkt,
-                a 100 kredytów pozwala dokupić 1 punkt. Kredyty nie wygasają.
+                Wymieniaj kredyty na punkty doświadczenia, zdobywaj poziomy i rozwijaj postać.
+                100 kredytów daje 1 punkt doświadczenia. Kredyty nie wygasają.
               </p>
               <div className="shop-prices">
                 {[
@@ -322,11 +370,7 @@ function App() {
               Planowane pakiety VIP i SVIP „NA ZAWSZE” mają działać bezterminowo, dopóki
               serwer REWIR będzie dostępny. Warunki na wypadek zakończenia działania serwera
               lub projektu zostaną jasno określone przed sprzedażą. Kredyty mają nie wygasać,
-              a model SVIP będzie dostępny tylko podczas aktywnego SVIP.
-            </p>
-            <p>
-              Modele postaci będą dostępne wyłącznie za kredyty. Ich ceny nie są jeszcze
-              ustalone i zostaną podane przed uruchomieniem sprzedaży.
+              a 100 kredytów będzie można wymienić na 1 punkt doświadczenia.
             </p>
           </div>
         </section>
@@ -448,11 +492,7 @@ function App() {
             </details>
             <details className="faq-item">
               <summary>Czy kredyty wygasają i na co można je wydać?</summary>
-              <p>Plan zakłada, że kredyty nie wygasają. Będzie można wymieniać je na punkty ulepszeń oraz modele postaci. Ceny modeli nie są jeszcze ustalone.</p>
-            </details>
-            <details className="faq-item">
-              <summary>Jak działa model postaci dostępny dla SVIP?</summary>
-              <p>Planowany ekskluzywny model SVIP będzie dostępny tylko wtedy, gdy SVIP jest aktywny.</p>
+              <p>Plan zakłada, że kredyty nie wygasają. Będzie można wymieniać je na punkty doświadczenia: 100 kredytów za 1 punkt. Doświadczenie pozwoli zdobywać poziomy i rozwijać postać.</p>
             </details>
             <details className="faq-item">
               <summary>Co oznacza pakiet VIP lub SVIP „NA ZAWSZE”?</summary>
